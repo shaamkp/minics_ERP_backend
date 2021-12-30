@@ -68,7 +68,7 @@
                   My Account
                 </span>
               </a>
-              <a href="" class="cart-link">
+              <a href="{% url 'product:cart' %}" class="cart-link">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 <span>
                   Cart
@@ -101,7 +101,7 @@
                   <a class="nav-link" href="about.html"> About</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="product.html">Products</a>
+                  <a class="nav-link" href="{% url 'product:product'  %}">Products</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="why.html">Why Us</a>
@@ -118,9 +118,36 @@
     <!-- end header section -->
     <!-- slider section -->
     <section class="slider_section ">
+      
       <div id="customCarousel1" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
-          <div class="carousel-item active">
+          {% for welcome in welcomes %}
+            <div class="carousel-item {% if forloop.counter0 == 0 %} active{% endif %}">
+              <div class="container ">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="detail-box">
+                        <h1>
+                          {{welcome.title}}
+                        </h1>
+                        <p>
+                          {{welcome.description}}
+                        </p>
+                        <a href="">
+                          Read More
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="img-box">
+                        <img src="{{welcome.image.url}}" alt="">
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            {% endfor %}
+          <!-- <div class="carousel-item">
             <div class="container ">
               <div class="row">
                 <div class="col-md-6">
@@ -167,32 +194,9 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="detail-box">
-                    <h1>
-                      Welcome to our shop
-                    </h1>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quam velit saepe dolorem deserunt quo quidem ad optio.
-                    </p>
-                    <a href="">
-                      Read More
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="img-box">
-                    <img src="{% static 'images/slider-img.png' %}" alt="">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          </div> -->
         </div>
+       
         <div class="carousel_btn_box">
           <a class="carousel-control-prev" href="#customCarousel1" role="button" data-slide="prev">
             <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -204,6 +208,7 @@
           </a>
         </div>
       </div>
+      
     </section>
     <!-- end slider section -->
   </div>
@@ -498,31 +503,32 @@
   <!-- about section -->
 
   <section class="about_section">
-    <div class="container-fluid  ">
-      <div class="row">
-        <div class="col-md-5 ml-auto">
-          <div class="detail-box pr-md-3">
-            <div class="heading_container">
-              <h2>
-                We Provide Best For You
-              </h2>
+    {% for about in abouts %}
+      <div class="container-fluid  ">
+        <div class="row">
+          <div class="col-md-5 ml-auto">
+            <div class="detail-box pr-md-3">
+              <div class="heading_container">
+                <h2>
+                  {{about.title}}
+                </h2>
+              </div>
+              <p>
+                {{about.description}}
+              </p>
+              <a href="">
+                Read More
+              </a>
             </div>
-            <p>
-              Totam architecto rem beatae veniam, cum officiis adipisci soluta perspiciatis ipsa, expedita maiores quae accusantium. Animi veniam aperiam, necessitatibus mollitia ipsum id optio ipsa odio ab facilis sit labore officia!
-              Repellat expedita, deserunt eum soluta rem culpa. Aut, necessitatibus cumque. Voluptas consequuntur vitae aperiam animi sint earum, ex unde cupiditate, molestias dolore quos quas possimus eveniet facilis magnam? Vero, dicta.
-            </p>
-            <a href="">
-              Read More
-            </a>
           </div>
-        </div>
-        <div class="col-md-6 px-0">
-          <div class="img-box">
-            <img src="{% static 'images/about-img.jpg' %}" alt="">
+          <div class="col-md-6 px-0">
+            <div class="img-box">
+              <img src="{{about.image.url}}" alt="">
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    {% endfor %}
   </section>
 
   <!-- end about section -->

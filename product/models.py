@@ -10,4 +10,10 @@ class Product(models.Model):
         return self.product_name
 
 
+class Cart(models.Model):
+    items=models.CharField(max_length=255)
+    image=models.ImageField(upload_to="Cart/")
+
+    def __str__(self):
+        return self.items
 

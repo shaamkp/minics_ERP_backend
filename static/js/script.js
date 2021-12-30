@@ -2,7 +2,6 @@ $(document).ready(function (){
     console.log("done");    
     $(document).on("submit", "form.ajax", function(e){
         e.preventDefault();
-        console.log("======success");
         var $this = $(this);
 
         var url = $this.attr("action");
@@ -17,7 +16,7 @@ $(document).ready(function (){
             contentType: false,
             cache: false,
             success: function (data){
-                console.log("success");
+                console.log("=========success");
                 console.log(data);
 
                 var title = data["title"];
@@ -35,7 +34,7 @@ $(document).ready(function (){
                 }
             },
             error: function(error){
-                console.log("error");
+                console.log("==========error");
                 console.log(error);
             },
 

@@ -1,15 +1,19 @@
 import json
 from django.shortcuts import render
-from product.models import Product
-from web.models import Subscribe
+from web.models import About, Subscribe, Welcome
 from django.http.response import HttpResponse
+from product.models import Product  
 
 
 def index(request):
     products=Product.objects.all()
+    welcomes=Welcome.objects.all()
+    abouts=About.objects.all()
 
     context={
-        "products":products
+        "products":products,
+        "welcomes":welcomes,
+        "abouts":abouts
     }
 
     return render(request,"index.html",context=context) 
@@ -38,6 +42,10 @@ def subscribe(request):
         }
 
     return HttpResponse(json.dumps(response_data), content_type ="application/javascript")
+
+
+
+
 
 
         
